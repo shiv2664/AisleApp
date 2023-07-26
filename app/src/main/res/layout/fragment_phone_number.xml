@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/get_otp"
+            android:layout_width="73dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:text="Get OTP"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="top"
+            />
+
+        <TextView
+            android:id="@+id/enter_your_"
+            android:layout_width="220dp"
+            android:layout_height="72dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/get_otp"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginStart="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:text="Enter Your Phone Number"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/country_code"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:text="+91"
+                android:inputType="phone"
+                android:textSize="18sp"
+                android:background="@drawable/text_view_background"
+                android:textStyle="bold"
+                android:gravity="top"
+                />
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:hint="1234567890"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:inputType="phone"
+                android:layout_toEndOf="@+id/country_code"
+                android:background="@drawable/text_view_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.028"
+                app:layout_constraintStart_toEndOf="@+id/country_code"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continue_button"
+            android:text="Continue"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:backgroundTint="#F9CB10"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/country_code"
+            app:layout_constraintTop_toBottomOf="@+id/country_code"
+            app:layout_constraintVertical_bias="0.063" />
+
+
+    </LinearLayout>
+</layout>
