@@ -1,5 +1,7 @@
 package com.example.aisleapp.api
 
+import com.example.aisleapp.model.Invites
+import com.example.aisleapp.model.ModelDetails
 import com.example.aisleapp.model.OtpModel
 import com.google.gson.JsonElement
 import retrofit2.Call
@@ -17,6 +19,5 @@ interface ApiInterface {
     fun postOtp(@Body model :OtpModel): Call<JsonElement?>?
 
     @GET("users/test_profile_list")
-    @Headers("Authorization:Bearer {bearerToken}")
-    fun getNotes(@Header("bearerToken") bearerToken: String): Call<JsonElement>?
+    fun getNotes(@Header("Authorization") bearerToken: String): Call<ModelDetails?>?
 }

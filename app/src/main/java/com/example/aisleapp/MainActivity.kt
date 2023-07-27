@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        addFragment(PhoneNumberFragment())
+        val bundle=Bundle()
+        addFragment(PhoneNumberFragment(),bundle)
 
 
 
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    public fun addFragment(fragment: Fragment) {
+    public fun addFragment(fragment: Fragment,bundle: Bundle) {
+        fragment.arguments = bundle;
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment, "yourFragmentTag")
             .commit()
