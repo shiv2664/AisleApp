@@ -46,12 +46,12 @@
 
             <EditText
                 android:id="@+id/otp_number"
-                android:layout_width="70dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/text_view_background"
-                android:hint="12345"
+                android:hint="1234"
                 android:inputType="phone"
                 android:maxLength="4"
                 android:padding="8dp"
