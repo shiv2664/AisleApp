@@ -77,7 +77,9 @@ class PhoneNumberFragment : Fragment() {
         call!!.enqueue(object : Callback<JsonElement?> {
             override fun onResponse(call: Call<JsonElement?>, response: Response<JsonElement?>) {
                 if (response.isSuccessful && response.body() != null) {
-                    Log.d("MyTag", "Successful1" + response.body()?.toString())
+//                    Log.d("MyTag", "Successful1" + response.body()?.toString())
+
+                    Log.d("MyTag", "Successful1" + response.body()?.toString() + " "+response.code().toString())
 
                     val bundle = Bundle()
                     bundle.putString("phoneNumber", "+91"+(binding.phoneNumber.text.toString().trim()))

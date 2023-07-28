@@ -1,7 +1,6 @@
 package com.example.aisleapp
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.aisleapp.api.ApiClient
 import com.example.aisleapp.api.ApiInterface
 import com.example.aisleapp.databinding.FragmentOtpBinding
 import com.example.aisleapp.model.OtpModel
-import com.google.gson.JsonElement
+import com.example.aisleapp.model.TokenClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,21 +92,29 @@ class OtpFragment : Fragment() {
 
         val otpModel= OtpModel(phoneNumber, binding.otpNumber.text.toString().trim())
 
-        val call: Call<JsonElement?>? =  apiInterface.postOtp(otpModel)
-        call!!.enqueue(object : Callback<JsonElement?> {
-            override fun onResponse(call: Call<JsonElement?>, response: Response<JsonElement?>) {
+        val call: Call<TokenClass?>? =  apiInterface.postOtp(otpModel)
+        call!!.enqueue(object : Callback<TokenClass?> {
+            override fun onResponse(call: Call<TokenClass?>, response: Response<TokenClass?>) {
                 if (response.isSuccessful && response.body() != null) {
                     Log.d("MyTag", "Successful1" + response.body()?.toString())
 
-                    val token= response.body()!!.asJsonObject["token"].asString
 
-                    val bundle = Bundle()
-                    bundle.putString("token", token)
+//                    val token :String?= response.body()?.asJsonObject?.get("token")?.asString?:" "
+                    val token= response.body()?.token
 
-                    if (activity != null && activity is MainActivity) {
-                        val parentActivity: MainActivity? = activity as MainActivity?
-                        parentActivity?.addFragment(FeedFragment(),bundle)
+                    if (token!=null){
+
+                        val bundle = Bundle()
+                        bundle.putString("token", token)
+                        if (activity != null && activity is MainActivity) {
+                            val parentActivity: MainActivity? = activity as MainActivity?
+                            parentActivity?.addFragment(FeedFragment(),bundle)
+                        }
+                    }else{
+                        Toast.makeText(requireActivity(),"Invalid OTP",Toast.LENGTH_SHORT).show()
                     }
+
+
 
                 } else {
                     val errorCode: String = when (response.code()) {
@@ -118,7 +126,7 @@ class OtpFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<JsonElement?>, t: Throwable) {
+            override fun onFailure(call: Call<TokenClass?>, t: Throwable) {
 
             }
         })

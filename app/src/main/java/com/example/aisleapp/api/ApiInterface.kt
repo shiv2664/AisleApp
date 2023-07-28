@@ -3,6 +3,7 @@ package com.example.aisleapp.api
 import com.example.aisleapp.model.Invites
 import com.example.aisleapp.model.ModelDetails
 import com.example.aisleapp.model.OtpModel
+import com.example.aisleapp.model.TokenClass
 import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.http.Body
@@ -16,7 +17,7 @@ interface ApiInterface {
     fun postNumber(@Body number: String): Call<JsonElement?>?
 
     @POST("users/verify_otp")
-    fun postOtp(@Body model :OtpModel): Call<JsonElement?>?
+    fun postOtp(@Body model :OtpModel): Call<TokenClass?>?
 
     @GET("users/test_profile_list")
     fun getNotes(@Header("Authorization") bearerToken: String): Call<ModelDetails?>?

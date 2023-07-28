@@ -38,7 +38,7 @@ class FeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        token= arguments?.getString("token").toString()
+        token = arguments?.getString("token").toString()
         Log.d("MyTag", "token is $token")
 
         apiInterface = ApiClient.apiClient?.create(ApiInterface::class.java)!!
@@ -55,9 +55,10 @@ class FeedFragment : Fragment() {
         call!!.enqueue(object : Callback<ModelDetails?> {
             override fun onResponse(call: Call<ModelDetails?>, response: Response<ModelDetails?>) {
                 if (response.isSuccessful && response.body() != null) {
-                    Log.d("MyTag", "Successful1" + response.body()?.toString())
+                    Log.d("MyTag", "Successful1" + response.body()?.toString() + " "+response.code().toString())
 
                     val data=response.body()
+
 
                     val imageUrl = data?.invites?.profiles?.get(0)?.photos?.get(0)?.photo
 
